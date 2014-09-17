@@ -1,5 +1,3 @@
-
-var d3 = require("d3");
 var Events = require("biojs-events");
 
 function circular(config){
@@ -8,7 +6,8 @@ function circular(config){
   radius = diameter / 2,
     diffInnerRadius = config.diffInnerRadius || 120,
     innerRadius = radius - diffInnerRadius,
-    tension = config.tension  || 0.85;
+    tension = config.tension  || 0.85,
+    selector = config.el;
   var self = this;
 
   var cluster = d3.layout.cluster()
@@ -24,7 +23,7 @@ function circular(config){
     .radius(function(d) { return d.y; })
     .angle(function(d) { return d.x / 180 * Math.PI; });
 
-  var svg = d3.select("#yourDiv").append("svg")
+  var svg = d3.select(selector).append("svg")
     .attr("width", diameter)
     .attr("height", diameter)
     .append("g")
@@ -60,7 +59,6 @@ function circular(config){
 
   function mouseovered(d) {
     self.trigger("mouseover", {key: d.name, imports: d.imports});  
-    self.trigger("mouseover", d);  
     node
       .each(function(n) { n.target = n.source = false; });
 

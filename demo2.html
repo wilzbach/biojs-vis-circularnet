@@ -1,0 +1,22 @@
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="./css/main.css" />
+</head>
+
+<div id="yourDiv"></div>
+
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src=./build/biojs-vis-circular-net.js></script>
+
+<script>
+d3.json("http://www.corsproxy.com/bl.ocks.org/mbostock/raw/7607999/a782ae3d8a76201e9f46983166012121d6138361/readme-flare-imports.json", function(error, data) {
+	var config = {el: "#yourDiv", diameter:960, tension: 0.85, data: data};
+	var obj = new biojs.vis.circularnet(config);
+	obj.on("mouseover", function(d){
+		console.log(d);
+	});
+	obj.on("click", function(d){
+		console.log(d);
+	});
+});
+</script>

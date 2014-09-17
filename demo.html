@@ -1,0 +1,25 @@
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="./css/main.css" />
+</head>
+
+<div id="yourDiv"></div>
+
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src=./build/biojs-vis-circular-net.js></script>
+
+<script>
+var data = [{name: "A", size: 4, imports: ["B"]},
+{name: "B", imports: ["D"]},
+{name: "C", imports: ["A","D", "E"]}, 
+{name: "D", imports: []},
+{name: "E", imports: []}]
+var config = {el: "#yourDiv", diameter:460, diffInnerRadius: 20,tension: 0.85, data: data};
+var obj = new biojs.vis.circularnet(config);
+obj.on("mouseover", function(d){
+console.log(d);
+});
+obj.on("click", function(d){
+console.log(d);
+});
+</script>
